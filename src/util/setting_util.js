@@ -22,7 +22,13 @@ export default class SettingUtil {
 
   static async getDefaultDataAll() {
     let defaultList = TextUtil.concatJson({}, defaultData);
-    defaultList["translateTarget"] = this.getDefaultLang();
+    
+    // ESKİ HALİ:
+    // defaultList["translateTarget"] = this.getDefaultLang();
+    
+    // YENİ HALİ:
+    defaultList["translateTarget"] = "tr";
+
     defaultList = TextUtil.concatJson(
       defaultList,
       await this.getDefaultVoice()

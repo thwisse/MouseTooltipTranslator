@@ -135,37 +135,37 @@ export var settingDict = {
     settingTab: "main",
   },
   translateSource: {
-    default: "auto",
+    default: "en",
     i18nKey: "Translate_From",
     optionList: langListWithAuto,
     settingTab: "main",
   },
   translateTarget: {
-    default: "en",
+    default: "tr",
     i18nKey: "Translate_Into",
     optionList: langList,
     settingTab: "main",
   },
   translatorVendor: {
-    default: "google",
+    default: "deepl",
     i18nKey: "Translator_Engine",
     optionList: translatorList,
     settingTab: "main",
   },
   mouseoverTextType: {
-    default: "sentence",
+    default: "container",
     i18nKey: "Mouseover_Text_Type",
     optionList: detectTypeList,
     settingTab: "main",
   },
   writingLanguage: {
-    default: "en",
+    default: "tr",
     i18nKey: "Writing_Language",
     optionList: langList,
     settingTab: "main",
   },
   ocrLang: {
-    default: "jpn_vert",
+    default: "tur",
     i18nKey: "OCR_Language",
     optionList: ocrLangList,
     settingTab: "main",
@@ -185,37 +185,37 @@ export var settingDict = {
 
   // keyboard
   showTooltipWhen: {
-    default: "always",
+    default: "ControlRight",
     i18nKey: "Show_Tooltip_When",
     optionList: keyListWithAlways,
     settingTab: "keyboard",
   },
   TTSWhen: {
-    default: "ControlLeft",
+    default: "AltRight",
     i18nKey: "Voice_When",
     optionList: keyListWithAlwaysSelect,
     settingTab: "keyboard",
   },
   keyDownTranslateWriting: {
-    default: "AltRight",
+    default: "null",
     i18nKey: "Translate_Writing_When",
     optionList: keyList,
     settingTab: "keyboard",
   },
   keyDownAutoReader: {
-    default: "F2",
+    default: "null",
     i18nKey: "Auto_Reader_When",
     optionList: keyList,
     settingTab: "keyboard",
   },
   keyDownOCR: {
-    default: "ShiftLeft",
+    default: "null",
     i18nKey: "OCR_When",
     optionList: keyListWithAlways,
     settingTab: "keyboard",
   },
   keySpeechRecognition: {
-    default: "ControlRight",
+    default: "null",
     i18nKey: "Speech_Recognition_When",
     optionList: keyList,
     settingTab: "keyboard",
@@ -249,19 +249,19 @@ export var settingDict = {
 
   // graphic
   tooltipFontSize: {
-    default: "18",
+    default: "16",
     i18nKey: "Tooltip_Font_Size",
     optionList: tooltipFontSizeList,
     settingTab: "graphic",
   },
   tooltipWidth: {
-    default: "200",
+    default: "700",
     i18nKey: "Tooltip_Width",
     optionList: tooltipWidth,
     settingTab: "graphic",
   },
   tooltipDistance: {
-    default: "20",
+    default: "40",
     i18nKey: "Tooltip_Distance",
     optionList: distanceList,
     settingTab: "graphic",
@@ -273,19 +273,19 @@ export var settingDict = {
     settingTab: "graphic",
   },
   tooltipPosition: {
-    default: "follow",
+    default: "fixed",
     i18nKey: "Tooltip_Position",
     optionList: tooltipPositionList,
     settingTab: "graphic",
   },
   tooltipTextAlign: {
-    default: "center",
+    default: "justify",
     i18nKey: "Tooltip_Text_Align",
     optionList: textAlignList,
     settingTab: "graphic",
   },
   tooltipBackgroundBlur: {
-    default: "6",
+    default: "20",
     i18nKey: "Tooltip_Background_Blur",
     optionList: tooltipBackgroundBlurList,
     settingTab: "graphic",
@@ -297,7 +297,7 @@ export var settingDict = {
     settingTab: "graphic",
   },
   tooltipFontColor: {
-    default: "#ffffffff",
+    default: "#000000",
     i18nKey: "Tooltip_Font_Color",
     optionList: {},
     optionType: "colorPicker",
@@ -305,7 +305,7 @@ export var settingDict = {
     settingTab: "graphic",
   },
   tooltipBackgroundColor: {
-    default: "#00000080",
+    default: "#FFFFFF",
     i18nKey: "Tooltip_Background_Color",
     optionList: {},
     optionType: "colorPicker",
@@ -313,7 +313,7 @@ export var settingDict = {
     settingTab: "graphic",
   },
   tooltipBorderColor: {
-    default: "#ffffff00",
+    default: "#000000",
     i18nKey: "Tooltip_Border_Color",
     optionList: {},
     optionType: "colorPicker",
@@ -447,7 +447,7 @@ export var settingDict = {
     settingTab: "advanced",
   },
   tooltipWordDictionary: {
-    default: "true",
+    default: "false",
     i18nKey: "Tooltip_Word_Dictionary",
     optionList: toggleList,
     settingTab: "advanced",
