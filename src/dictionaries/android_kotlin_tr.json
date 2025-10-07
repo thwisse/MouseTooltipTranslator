@@ -28,7 +28,7 @@
   "local variable": ["yerel değişken"],
   "global variable": ["küresel değişken", "global değişken"],
   "null safety": ["null güvenliği", "null emniyeti"],
-  "null-safe": ["null-güvenli", "null emniyetli"],
+  "null-safe": ["null-güvenli", "null emniyetli", "null güvenli"],
   "type inference": ["tip çıkarımı", "tür çıkarımı"],
   "return type": ["dönüş tipi", "dönüş türü"],
   "smart cast": ["akıllı dönüştürme", "akıllı tip dönüşümü"],
