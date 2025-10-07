@@ -11,6 +11,8 @@ import * as util from "/src/util";
 import SettingUtil from "/src/util/setting_util.js";
 import _util from "/src/util/lodash_util.js";
 
+import { enrichTranslation } from "/src/util/tech_dictionary.js"; // BİZİM EKLEDİĞİMİZ SATIR
+
 var setting;
 var recentTranslated = "";
 var introSiteUrl =
@@ -43,9 +45,28 @@ function addMessageListener() {
     sendResponse
   ) {
     (async () => {
+      // background.js icindeki if icerigi:
+      
       if (request.type === "translate") {
+        // Çeviri isteğini yap (bu fonksiyon sonucu önbellekten getirebilir)
         var translatedResult = await translate(request.data, setting);
-        sendResponse(translatedResult);
+        
+        // Gönderilecek sonucu başlangıçta orijinal sonuç olarak ayarla
+        var resultToSend = translatedResult; 
+
+        // ================== AKILLI SÖZLÜK ÖZELLİĞİ ==================
+        if (translatedResult && translatedResult.targetText) {
+          const originalText = request.data.text;
+          const translatedText = translatedResult.targetText;
+
+          // Fonksiyonumuzu çağırarak çeviriyi zenginleştiriyoruz
+          const enrichedText = enrichTranslation(originalText, translatedText);
+
+          resultToSend = { ...translatedResult, targetText: enrichedText };
+        }
+
+        // Sonucu geri gönder (eğer zenginleştirildiyse kopyayı, değilse orijinali gönderir)
+        sendResponse(resultToSend);
       } else if (request.type === "tts") {
         request.data.setting = setting;
         await TTS.playTtsQueue(request.data);

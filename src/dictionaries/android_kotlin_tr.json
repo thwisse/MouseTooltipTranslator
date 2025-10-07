@@ -1,0 +1,22 @@
+{
+  "dependency injection": ["bağımlılık enjeksiyonu"],
+  "garbage collector": ["çöp toplayıcısı", "çöp toplayıcı"],
+  "garbage collection": ["çöp toplama"],
+  "unit test": ["birim testi", "ünite testi"],
+  "primary constructor": ["birincil yapıcı", "birincil kurucu"],
+  "secondary constructor": ["ikincil yapıcı", "ikincil kurucu"],
+  
+  "syntax": ["sözdizimi", "sentaks"],
+  "integer": ["tamsayı", "tam sayı"],
+  "constructor": ["yapıcı", "kurucu"],
+  "read-only": ["salt okunur"],
+
+  "initialize": ["başlat"],
+  
+  "property": ["özellik", "Özellik"],
+  "properties": ["özellikler", "Özellikler"],
+  "signed": ["işaretli", "İşaretli"],
+  "unsigned": ["işaretsiz", "İşaretsiz"],
+  "mutable": ["değiştirilebilir", "değişebilir"],
+  "immutable": ["değiştirilemez", "değişmez"]
+}

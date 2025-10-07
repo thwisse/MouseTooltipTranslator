@@ -62,6 +62,7 @@ var tooltipRemoveTime = 3000;
 var autoReaderScrollTime = 400;
 
 var listenText = "";
+let originalSourceTextForTooltip = ""; // <-- BU SATIRI EKLE
 
 //tooltip core======================================================================
 
@@ -133,21 +134,23 @@ function isOtherServiceActive(excludeSelect = false) {
 
 //process detected word
 async function stageTooltipText(text, actionType, range) {
+  if (stagedText !== text) {
+    originalSourceTextForTooltip = text;
+  }
+
   var isTtsOn =
     keyDownList[setting["TTSWhen"]] ||
     (setting["TTSWhen"] == "select" && actionType == "select");
   var isTtsSwap = keyDownDoublePress[setting["TTSWhen"]];
   var isTooltipOn = keyDownList[setting["showTooltipWhen"]];
   var timestamp = Number(Date.now());
-  // skip if mouse target is tooltip or no text, if no new word or  tab is not activated
-  // hide tooltip, if  no text
-  // if tooltip is off, hide tooltip
+
   if (
     !checkWindowFocus() ||
     checkMouseTargetIsTooltip() ||
     stagedText == text ||
     !util.isExtensionOnline() ||
-    (selectedText == prevSelected && !text && actionType == "select") //prevent select flicker
+    (selectedText == prevSelected && !text && actionType == "select")
   ) {
     return;
   } else if (!text) {
@@ -161,18 +164,17 @@ async function stageTooltipText(text, actionType, range) {
     hideTooltip();
   }
 
-  //stage current processing word
   stagedText = text;
+  
   var translatedData = await util.requestTranslate(
-    text,
+    originalSourceTextForTooltip,
     setting["translateSource"],
     setting["translateTarget"],
     setting["translateReverseTarget"]
   );
+
   var { targetText, sourceLang, targetLang } = translatedData;
 
-  // if translation is not recent one, do not update
-  //if translated text is empty, hide tooltip
   if (stagedText != text) {
     return;
   } else if (
@@ -184,14 +186,12 @@ async function stageTooltipText(text, actionType, range) {
     return;
   }
 
-  //if tooltip is on or activation key is pressed, show tooltip
   if (isTooltipOn) {
-    handleTooltip(text, translatedData, actionType, range);
+    handleTooltip(originalSourceTextForTooltip, translatedData, actionType, range);
   }
-  //if use_tts is on or activation key is pressed, do tts
   if (isTtsOn) {
     handleTTS(
-      text,
+      originalSourceTextForTooltip,
       sourceLang,
       targetText,
       targetLang,
@@ -200,9 +200,7 @@ async function stageTooltipText(text, actionType, range) {
       isTtsSwap
     );
   }
-}
-
-async function handleTTS(
+}async function handleTTS(
   text,
   sourceLang,
   targetText,
