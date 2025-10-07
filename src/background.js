@@ -72,44 +72,32 @@ function addMessageListener() {
       
       // Eğer gelen mesajın tipi "translate" ise, yani bir çeviri isteği ise...
       if (request.type === "translate") {
-        //console.log("[Background] Çeviri isteği alındı. Orijinal metin:", request.data.text);
-
-        // Çeviri API'si ile iletişime geçen ve sonucu getiren ana fonksiyonu çağırır.
-        // Bu fonksiyon, aynı metin daha önce çevrildiyse sonucu önbellekten (cache) getirebilir.
-        var translatedResult = await translate(request.data, setting);
         
-        // Gönderilecek cevabı, başlangıçta API'den gelen ham sonuç olarak ayarlıyoruz.
+        // --- YENİ LOGLAMA BAŞLANGICI ---
+        //const requestId = Date.now(); // Her isteğe benzersiz bir zaman damgası ata.
+        //console.log(`[Background] ${requestId}: Çeviri isteği alındı. Orijinal metin:`, request.data.text);
+        // --- YENİ LOGLAMA SONU ---
+
+        var translatedResult = await translate(request.data, setting);
         var resultToSend = translatedResult; 
 
-        // ================== AKILLI SÖZLÜK ÖZELLİĞİ (ENTEGRASYON NOKTASI) ==================
-        
-        // Eğer çeviri işlemi başarılı olduysa ve içinde çevrilmiş metin varsa...
         if (translatedResult && translatedResult.targetText) {
-          //console.log("[Background] Ham çeviri API'den başarıyla alındı:", translatedResult.targetText);
+          //console.log(`[Background] ${requestId}: Ham çeviri API'den başarıyla alındı.`);
+          //console.log(`[Background] ${requestId}: Teknik terim zenginleştirme fonksiyonu (enrichTranslation) çağrılıyor...`);
           
-          // Zenginleştirme fonksiyonuna göndereceğimiz verileri hazırlıyoruz.
           const originalText = request.data.text;
           const translatedText = translatedResult.targetText;
-
-          //console.log("[Background] Teknik terim zenginleştirme fonksiyonu (enrichTranslation) çağrılıyor...");
-          
-          // tech_dictionary.js dosyasındaki ana fonksiyonumuzu çağırarak çeviriyi zenginleştiriyoruz.
           const enrichedText = enrichTranslation(originalText, translatedText);
 
-          //console.log("[Background] Zenginleştirme tamamlandı. Sonuç contentScript'e gönderilecek.");
+          //console.log(`[Background] ${requestId}: Zenginleştirme tamamlandı. Sonuç contentScript'e gönderilecek.`);
           
-          // API'den gelen orijinal sonuç objesini kopyalıyor (...translatedResult) ve sadece
-          // 'targetText' alanını kendi zenginleştirdiğimiz metinle değiştiriyoruz.
-          // Bu, eklentinin diğer özelliklerinin (örn: kaynak dil tespiti) bozulmamasını sağlar.
           resultToSend = { ...translatedResult, targetText: enrichedText };
         } else {
-          //console.warn("[Background] UYARI: Çeviri API'sinden sonuç alınamadı veya sonuç boş. Zenginleştirme atlanıyor.");
+          console.warn(`[Background] ${requestId}: UYARI: Çeviri API'sinden sonuç alınamadı veya sonuç boş.`);
         }
-
-        // Nihai sonucu (zenginleştirilmiş veya ham çeviri) isteği yapan contentScript'e geri gönderiyoruz.
         sendResponse(resultToSend);
         
-      } else if (request.type === "tts") {
+      } else if (request.type === "tts") { // ... (Diğer eklenti özellikleri)
         request.data.setting = setting;
         await TTS.playTtsQueue(request.data);
         sendResponse({});
@@ -144,6 +132,7 @@ function addMessageListener() {
         sendResponse({ settingData });
       }
     })();
+    // 'return true' ifadesi, sendResponse fonksiyonunu asenkron olarak kullanacağımızı belirtir.
     return true;
   });
 }

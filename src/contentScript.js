@@ -146,16 +146,15 @@ function isOtherServiceActive(excludeSelect = false) {
  * @param {Range} range - Metnin sayfadaki konumunu belirten Range objesi (sadece mouseover için).
  */
 async function stageTooltipText(text, actionType, range) {
-  // --- Fonksiyon Başlangıcı ve Girdi Kontrolü ---
-  //console.log(`[ContentScript] stageTooltipText tetiklendi. Eylem: '${actionType}', Gelen Metin: '${text}'`);
+  // --- YENİ LOGLAMA BAŞLANGICI ---
+  // Bu log, fonksiyonun hangi olay tarafından tetiklendiğini bize gösterecek ve
+  // çift tetiklenme sorununu teşhis etmemizi sağlayacak.
+  //console.log(`[ContentScript] stageTooltipText tetiklendi. Eylem TÜRÜ: '${actionType}'`);
+  // --- YENİ LOGLAMA SONU ---
 
   // --- Orijinal Metni Güvenle Saklama (BİZİM EKLEDİĞİMİZ MANTIK) ---
-  // Eğer yeni gelen metin (text), bir önceki adımda işleme alınan metinden (stagedText) farklıysa,
-  // bu yeni metni, zenginleştirme için kullanılacak olan ana değişkenimize atıyoruz.
-  // Bu kontrol, aynı metin için gereksiz yere atama yapılmasını önler.
   if (stagedText !== text) {
     originalSourceTextForTooltip = text;
-    // console.log(`[ContentScript] Yeni bir metin algılandı. 'originalSourceTextForTooltip' güncellendi: '${originalSourceTextForTooltip}'`);
   }
 
   // Eklentinin, çeviriyi gösterme veya TTS'i çalıştırma koşullarını kontrol eden standart mantığı
