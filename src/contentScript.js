@@ -348,34 +348,44 @@ function hideHighlight(checkSkipCase) {
   $(".mtt-highlight")?.remove();
 }
 
-// contentScript.js dosyasının içindeki fonksiyon
+
+function enrichSourceText(sourceText, termsToBold) {
+  if (!termsToBold || termsToBold.length === 0) {
+    return sourceText;
+  }
+
+  let enrichedSource = sourceText;
+
+  // Artık 'akıllı' bir analiz yok. Sadece verilen listedeki her kelimeyi
+  // basit ve güvenilir Regex ile bulup değiştiriyoruz.
+  for (const term of termsToBold) {
+    // 'Brute force' testinde çalıştığını kanıtladığımız yöntem:
+    // Basit bir Regex ve 'gi' bayrakları.
+    const regex = new RegExp(`\\b(${term})\\b`, 'gi');
+    enrichedSource = enrichedSource.replace(regex, `<b>$1</b>`);
+  }
+  return enrichedSource;
+}
 
 function handleTooltip(text, translatedData, actionType, range) {
-  var { targetText, sourceLang, targetLang, transliteration, dict, imageUrl } =
+  // Gelen veriden 'usedTerms' dizisini alıyoruz.
+  var { targetText, sourceLang, targetLang, transliteration, dict, imageUrl, usedTerms } =
     translatedData;
 
   var tooltipMainText;
 
-  if (imageUrl) {
-    tooltipMainText = wrapMainImage(imageUrl);
-  } else if (setting["tooltipWordDictionary"] == "true" && dict) {
-    tooltipMainText = wrapDict(dict, targetLang);
-  } else {
-    // --- YENİ GÜNCELLENMİŞ MANTIK ---
-
-    // 1. Zenginleştirilmiş ve <b> etiketlerini içeren Türkçe metni MANUEL olarak HTML'e yerleştiriyoruz.
-    // wrapMain fonksiyonu HTML'i metne çevirdiği için, <b> etiketlerimizi korumak adına bu kısmı
-    // doğrudan bir HTML string'i olarak kendimiz oluşturuyoruz.
+  if (imageUrl) { /* ... */ } 
+  else if (setting["tooltipWordDictionary"] == "true" && dict) { /* ... */ } 
+  else {
     const turkishPart = `<span dir="${getRtlDir(targetLang)}">${targetText}</span>`;
 
-    // 2. Orijinal İngilizce metin için wrapMain kullanmaya devam edebiliriz, çünkü o HTML içermiyor.
-    const englishPart = wrapMain(text, sourceLang);
-    
-    // 3. İki HTML bloğunu, aralarına <hr> etiketi koyarak birleştiriyoruz.
+    // Yeni basit ve güvenilir 'enrichSourceText' fonksiyonunu çağırıyoruz.
+    const enrichedSource = enrichSourceText(text, usedTerms);
+
+    const englishPart = `<span dir="${getRtlDir(sourceLang)}">${enrichedSource}</span>`;
+
     tooltipMainText = `<div>${turkishPart}</div><hr style='margin: 5px 0; border: none; border-top: 1px solid #ddd;'><div>${englishPart}</div>`;
   }
-  // --- GÜNCELLEME SONU ---
-
   
   // Eklentinin alt bilgi kısmını oluşturan standart kod.
   var tooltipOriText = "";

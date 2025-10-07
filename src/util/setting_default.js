@@ -255,7 +255,7 @@ export var settingDict = {
     settingTab: "graphic",
   },
   tooltipWidth: {
-    default: "700",
+    default: "800",
     i18nKey: "Tooltip_Width",
     optionList: tooltipWidth,
     settingTab: "graphic",

@@ -72,32 +72,23 @@ function addMessageListener() {
       
       // Eğer gelen mesajın tipi "translate" ise, yani bir çeviri isteği ise...
       if (request.type === "translate") {
-        
-        // --- YENİ LOGLAMA BAŞLANGICI ---
-        //const requestId = Date.now(); // Her isteğe benzersiz bir zaman damgası ata.
-        //console.log(`[Background] ${requestId}: Çeviri isteği alındı. Orijinal metin:`, request.data.text);
-        // --- YENİ LOGLAMA SONU ---
+  var translatedResult = await translate(request.data, setting);
+  var resultToSend = translatedResult; 
 
-        var translatedResult = await translate(request.data, setting);
-        var resultToSend = translatedResult; 
+  if (translatedResult && translatedResult.targetText) {
+    const originalText = request.data.text;
+    const translatedText = translatedResult.targetText;
 
-        if (translatedResult && translatedResult.targetText) {
-          //console.log(`[Background] ${requestId}: Ham çeviri API'den başarıyla alındı.`);
-          //console.log(`[Background] ${requestId}: Teknik terim zenginleştirme fonksiyonu (enrichTranslation) çağrılıyor...`);
-          
-          const originalText = request.data.text;
-          const translatedText = translatedResult.targetText;
-          const enrichedText = enrichTranslation(originalText, translatedText);
+    const enrichmentResult = enrichTranslation(originalText, translatedText);
 
-          //console.log(`[Background] ${requestId}: Zenginleştirme tamamlandı. Sonuç contentScript'e gönderilecek.`);
-          
-          resultToSend = { ...translatedResult, targetText: enrichedText };
-        } else {
-          console.warn(`[Background] ${requestId}: UYARI: Çeviri API'sinden sonuç alınamadı veya sonuç boş.`);
-        }
-        sendResponse(resultToSend);
-        
-      } else if (request.type === "tts") { // ... (Diğer eklenti özellikleri)
+    resultToSend = { 
+      ...translatedResult, 
+      targetText: enrichmentResult.enrichedText,
+      usedTerms: enrichmentResult.usedTerms // <-- Önemli olan bu satır
+    };
+  }
+  sendResponse(resultToSend);
+} else if (request.type === "tts") { // ... (Diğer eklenti özellikleri)
         request.data.setting = setting;
         await TTS.playTtsQueue(request.data);
         sendResponse({});
