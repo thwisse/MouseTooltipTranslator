@@ -349,24 +349,47 @@ function hideHighlight(checkSkipCase) {
   $(".mtt-highlight")?.remove();
 }
 
+// contentScript.js dosyasının içindeki fonksiyon
+
 function handleTooltip(text, translatedData, actionType, range) {
   var { targetText, sourceLang, targetLang, transliteration, dict, imageUrl } =
     translatedData;
-  var isShowOriTextOn = setting["tooltipInfoSourceText"] == "true";
+
+  var tooltipMainText;
+
+  if (imageUrl) {
+    tooltipMainText = wrapMainImage(imageUrl);
+  } else if (setting["tooltipWordDictionary"] == "true" && dict) {
+    tooltipMainText = wrapDict(dict, targetLang);
+  } else {
+    // --- YENİ GÜNCELLENMİŞ MANTIK ---
+
+    // 1. Zenginleştirilmiş Türkçe metni (yukarıda) oluşturuyoruz.
+    const turkishPart = wrapMain(targetText, targetLang);
+
+    // 2. Orijinal İngilizce metni (aşağıda) oluşturuyoruz.
+    const englishPart = wrapMain(text, sourceLang);
+    
+    // 3. Her bir metin parçasını kendi <div> bloğuna alıyoruz.
+    // Bu, kopyalama sırasında aralarına yeni satır eklenmesini sağlar.
+    // Aralarına yine <hr> etiketini koyarak görsel çizgiyi koruyoruz.
+    tooltipMainText = `<div>${turkishPart}</div><hr style='margin: 5px 0; border: none; border-top: 1px solid #ddd;'><div>${englishPart}</div>`;
+  }
+  // --- GÜNCELLEME SONU ---
+
+  
+  // Eklentinin alt bilgi kısmını oluşturan standart kod.
+  var tooltipOriText = "";
   var isShowLangOn = setting["tooltipInfoSourceLanguage"] == "true";
   var isTransliterationOn = setting["tooltipInfoTransliteration"] == "true";
   var tooltipTransliteration = isTransliterationOn ? transliteration : "";
   var tooltipLang = isShowLangOn ? langListOpposite[sourceLang] : "";
-  var tooltipOriText = isShowOriTextOn ? text : "";
-  var isDictOn = setting["tooltipWordDictionary"] == "true";
-  var dictData = isDictOn ? wrapDict(dict, targetLang) : "";
-
-  var tooltipMainText =
-    wrapMainImage(imageUrl) || dictData || wrapMain(targetText, targetLang);
+  
   var tooltipSubText =
     wrapInfoText(tooltipOriText, "i", sourceLang) +
     wrapInfoText(tooltipTransliteration, "b") +
     wrapInfoText(tooltipLang, "sup");
+  
   var tooltipText = tooltipMainText + tooltipSubText;
 
   showTooltip(tooltipText);
