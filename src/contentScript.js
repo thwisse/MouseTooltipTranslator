@@ -363,15 +363,15 @@ function handleTooltip(text, translatedData, actionType, range) {
   } else {
     // --- YENİ GÜNCELLENMİŞ MANTIK ---
 
-    // 1. Zenginleştirilmiş Türkçe metni (yukarıda) oluşturuyoruz.
-    const turkishPart = wrapMain(targetText, targetLang);
+    // 1. Zenginleştirilmiş ve <b> etiketlerini içeren Türkçe metni MANUEL olarak HTML'e yerleştiriyoruz.
+    // wrapMain fonksiyonu HTML'i metne çevirdiği için, <b> etiketlerimizi korumak adına bu kısmı
+    // doğrudan bir HTML string'i olarak kendimiz oluşturuyoruz.
+    const turkishPart = `<span dir="${getRtlDir(targetLang)}">${targetText}</span>`;
 
-    // 2. Orijinal İngilizce metni (aşağıda) oluşturuyoruz.
+    // 2. Orijinal İngilizce metin için wrapMain kullanmaya devam edebiliriz, çünkü o HTML içermiyor.
     const englishPart = wrapMain(text, sourceLang);
     
-    // 3. Her bir metin parçasını kendi <div> bloğuna alıyoruz.
-    // Bu, kopyalama sırasında aralarına yeni satır eklenmesini sağlar.
-    // Aralarına yine <hr> etiketini koyarak görsel çizgiyi koruyoruz.
+    // 3. İki HTML bloğunu, aralarına <hr> etiketi koyarak birleştiriyoruz.
     tooltipMainText = `<div>${turkishPart}</div><hr style='margin: 5px 0; border: none; border-top: 1px solid #ddd;'><div>${englishPart}</div>`;
   }
   // --- GÜNCELLEME SONU ---
@@ -932,7 +932,7 @@ function applyStyleSetting() {
       margin: 0px !important;
       margin-left: -500px !important;
       position: fixed !important;
-      z-index: 2147483647 !important; /* Maximum z-index to overcome overlays */
+      z-index: 2147483647 !important;
       background: none !important;
       pointer-events: none !important;
       display: inline-block !important;
@@ -951,21 +951,33 @@ function applyStyleSetting() {
         "Droid Sans", "Helvetica Neue", sans-serif  !important;
       white-space: pre-line;
     }
+
+    /* --- YENİ EKLENEN KURAL --- */
+    /* Yukarıdaki '*' seçicisi <b> etiketinin varsayılan stilini ezdiği için,
+       bu kural ile <b> ve <strong> etiketlerinin her zaman kalın olmasını garantiliyoruz. */
+    .tippy-content b, .tippy-content strong {
+      font-weight: bold !important;
+    }
+    /* --- YENİ KURAL SONU --- */
+
     .tippy-box[data-theme~="custom"]{
       max-width: ${setting["tooltipWidth"]}px  !important;
       backdrop-filter: blur(${setting["tooltipBackgroundBlur"]}px) !important;
       background-color: ${setting["tooltipBackgroundColor"]} !important;
       border: 1px solid ${setting["tooltipBorderColor"]}; 
       box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-      opacity: 1.0; /* Adjusted opacity for transparency */
+      opacity: 1.0;
     }
+    
+    /* ... (dosyanın geri kalan stil tanımlamaları aynı şekilde devam ediyor) ... */
+
     .tippy-box[data-theme~="ocr"]{
       max-width: $1000px  !important;
       backdrop-filter: blur(${setting["tooltipBackgroundBlur"]}px) !important;
       background-color: ${setting["tooltipBackgroundColor"]} !important;
       border: 1px solid ${setting["tooltipBorderColor"]}; 
       box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-      opacity: 1.0; /* Adjusted opacity for transparency */
+      opacity: 1.0;
     }
     .tippy-box[data-theme~="transparent"] {
       max-width: $1000px  !important;
@@ -973,8 +985,8 @@ function applyStyleSetting() {
       background-color: ${setting["tooltipBackgroundColor"]} !important;
       border: 1px solid ${setting["tooltipBorderColor"]}; 
       box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-      opacity: 0.0; /* Adjusted opacity for transparency */
-      transition: opacity 0.3s ease-in-out; /* Added transition for opacity */
+      opacity: 0.0;
+      transition: opacity 0.3s ease-in-out;
     }
     [data-tippy-root] {
       display: inline-block !important;
@@ -992,11 +1004,10 @@ function applyStyleSetting() {
     .tippy-box[data-theme~='custom'][data-placement^='right'] > .tippy-arrow::before, .tippy-box[data-theme~='ocr'][data-placement^='right'] > .tippy-arrow::before {
       border-right-color: ${setting["tooltipBackgroundColor"]} !important;
     }
-
     .mtt-highlight{
       background-color: ${setting["mouseoverTextHighlightColor"]}  !important;
       position: absolute !important;   
-      z-index: 2147483646 !important; /* Slightly lower than tooltip */
+      z-index: 2147483646 !important;
       pointer-events: none !important;
       display: inline !important;
       border-radius: 3px !important;

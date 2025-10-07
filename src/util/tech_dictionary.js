@@ -109,7 +109,8 @@ export function enrichTranslation(originalText, translatedText) {
         enrichments.push({
           start: startIndex,
           end: endIndex,
-          newText: `${matchedWord} (${termToDisplay})`
+          // Değişiklik burada:
+          newText: `${matchedWord} <b>(${termToDisplay})</b>`
         });
 
         for (let i = startIndex; i < endIndex; i++) claimedIndices[i] = true;
