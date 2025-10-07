@@ -147,7 +147,7 @@ function isOtherServiceActive(excludeSelect = false) {
  */
 async function stageTooltipText(text, actionType, range) {
   // --- Fonksiyon Başlangıcı ve Girdi Kontrolü ---
-  console.log(`[ContentScript] stageTooltipText tetiklendi. Eylem: '${actionType}', Gelen Metin: '${text}'`);
+  //console.log(`[ContentScript] stageTooltipText tetiklendi. Eylem: '${actionType}', Gelen Metin: '${text}'`);
 
   // --- Orijinal Metni Güvenle Saklama (BİZİM EKLEDİĞİMİZ MANTIK) ---
   // Eğer yeni gelen metin (text), bir önceki adımda işleme alınan metinden (stagedText) farklıysa,
@@ -155,7 +155,7 @@ async function stageTooltipText(text, actionType, range) {
   // Bu kontrol, aynı metin için gereksiz yere atama yapılmasını önler.
   if (stagedText !== text) {
     originalSourceTextForTooltip = text;
-    console.log(`[ContentScript] Yeni bir metin algılandı. 'originalSourceTextForTooltip' güncellendi: '${originalSourceTextForTooltip}'`);
+    // console.log(`[ContentScript] Yeni bir metin algılandı. 'originalSourceTextForTooltip' güncellendi: '${originalSourceTextForTooltip}'`);
   }
 
   // Eklentinin, çeviriyi gösterme veya TTS'i çalıştırma koşullarını kontrol eden standart mantığı
@@ -190,7 +190,7 @@ async function stageTooltipText(text, actionType, range) {
   stagedText = text;
   
   // --- Background Script ile İletişim (BİZİM DEĞİŞTİRDİĞİMİZ YER) ---
-  console.log(`[ContentScript] Çeviri ve zenginleştirme için background.js'e istek gönderiliyor. Gönderilen metin: '${originalSourceTextForTooltip}'`);
+  // console.log(`[ContentScript] Çeviri ve zenginleştirme için background.js'e istek gönderiliyor. Gönderilen metin: '${originalSourceTextForTooltip}'`);
 
   // Arka plana çeviri isteği yolluyoruz. DİKKAT: Burada 'text' yerine 'originalSourceTextForTooltip' değişkenini kullanıyoruz.
   // Bu, her zaman en doğru ve saf orijinal metni göndermemizi garantiler.
@@ -202,7 +202,7 @@ async function stageTooltipText(text, actionType, range) {
   );
 
   // Gelen veriyi log'luyoruz. 'targetText' burada zenginleştirilmiş metni içermelidir.
-  console.log("[ContentScript] background.js'den cevap alındı:", translatedData);
+  // console.log("[ContentScript] background.js'den cevap alındı:", translatedData);
 
   // ... (Eklentinin, gelen cevabı işleyen standart mantığı)
   var { targetText, sourceLang, targetLang } = translatedData;
