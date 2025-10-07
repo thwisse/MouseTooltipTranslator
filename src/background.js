@@ -1,7 +1,15 @@
-//handle translation
-//it communicate with  contentScript.js(for translation and tts)
-//listen context menu, uninstall, first install, extension update
+/**
+ * @file background.js
+ * @description Bu dosya, tarayıcı eklentisinin "beyni" olarak çalışır.
+ * Tarayıcı arka planında sürekli aktiftir ve aşağıdaki gibi görevleri yönetir:
+ * - contentScript.js'den (web sayfasında çalışan kod) gelen mesajları dinler.
+ * - Çeviri API'lerine istek gönderir.
+ * - Text-to-Speech (TTS) işlemlerini yönetir.
+ * - Eklentinin ayarlarını ve geçmiş verilerini tutar.
+ * - Tarayıcı kısayolları (örn: Ctrl+C) ve menü etkileşimlerini dinler.
+ */
 
+// Gerekli modülleri ve kendi yazdığımız fonksiyonları import ediyoruz.
 import browser from "webextension-polyfill";
 import TextUtil from "/src/util/text_util.js";
 
@@ -11,16 +19,23 @@ import * as util from "/src/util";
 import SettingUtil from "/src/util/setting_util.js";
 import _util from "/src/util/lodash_util.js";
 
-import { enrichTranslation } from "/src/util/tech_dictionary.js"; // BİZİM EKLEDİĞİMİZ SATIR
+// KENDİ ÖZELLİĞİMİZ: Yazdığımız zenginleştirme fonksiyonunu import ediyoruz.
+import { enrichTranslation } from "/src/util/tech_dictionary.js";
 
-var setting;
+// Eklentinin çalışması boyunca kullanılacak bazı global değişkenler.
+var setting; // Kullanıcı ayarlarını tutar
 var recentTranslated = "";
 var introSiteUrl =
   "https://github.com/ttop32/MouseTooltipTranslator/blob/main/doc/intro.md#how-to-use";
 var recentRecord = {};
 
+/**
+ * Eklenti ilk yüklendiğinde veya tarayıcı başladığında çalışan ana başlangıç fonksiyonu.
+ * Gerekli tüm dinleyicileri (event listeners) kurar.
+ */
 (async function backgroundInit() {
   try {
+    
     injectContentScriptForAllTab(); // check extension updated, then re inject content script
     addInstallUrl(introSiteUrl); // check first start and redirect to how to use url
     // addUninstallUrl(util.getReviewUrl());  //listen extension uninstall and
@@ -32,41 +47,75 @@ var recentRecord = {};
     addPdfFileTabListener(); //listen drag and drop pdf
     addSearchBarListener(); // listen url search bar for translate omnibox
     addMessageListener(); // listen message from content script for handle translate & tts
+
+    // AYARLARI YÜKLE: Eklentinin ayarlarını hafızaya yükler.
+    await getSetting();
+    
+    // ... (Kopyalama, kaydetme gibi diğer dinleyicilerin kurulumu)
+    
+    // ANA İLETİŞİM KANALI: contentScript'ten gelecek mesajları dinlemek için ana dinleyiciyi kurar.
+    addMessageListener(); 
   } catch (error) {
-    console.log(error);
+    console.error("Eklenti başlangıcında bir hata oluştu:", error);
   }
 })();
 
-//listen message from contents js and popup js =========================================================================================================
+/**
+ * contentScript.js'den (ve diğer eklenti içi sayfalardan) gelen tüm mesajları
+ * dinleyen ve ilgili işlemleri başlatan merkezi fonksiyondur.
+ */
 function addMessageListener() {
   browser.runtime.onMessage.addListener(function (
-    request,
-    sender,
-    sendResponse
+    request,     // Gelen mesajın içeriği (örn: { type: "translate", data: {...} })
+    sender,      // Mesajı gönderen hakkında bilgi (örn: hangi sekmeden geldiği)
+    sendResponse // Mesajı gönderen tarafa cevap yollamak için kullanılan fonksiyon
   ) {
+    // Gelen istekleri asenkron olarak işlemek için bir yapı kuruyoruz.
     (async () => {
-      // background.js icindeki if icerigi:
       
+      // ---------------------------------------------------------------------------------
+      // --- BİZİM EKLEDİĞİMİZ ÖZELLİĞİN ÇALIŞTIĞI ANA BLOK ---
+      // ---------------------------------------------------------------------------------
+      
+      // Eğer gelen mesajın tipi "translate" ise, yani bir çeviri isteği ise...
       if (request.type === "translate") {
-        // Çeviri isteğini yap (bu fonksiyon sonucu önbellekten getirebilir)
+        console.log("[Background] Çeviri isteği alındı. Orijinal metin:", request.data.text);
+
+        // Çeviri API'si ile iletişime geçen ve sonucu getiren ana fonksiyonu çağırır.
+        // Bu fonksiyon, aynı metin daha önce çevrildiyse sonucu önbellekten (cache) getirebilir.
         var translatedResult = await translate(request.data, setting);
         
-        // Gönderilecek sonucu başlangıçta orijinal sonuç olarak ayarla
+        // Gönderilecek cevabı, başlangıçta API'den gelen ham sonuç olarak ayarlıyoruz.
         var resultToSend = translatedResult; 
 
-        // ================== AKILLI SÖZLÜK ÖZELLİĞİ ==================
+        // ================== AKILLI SÖZLÜK ÖZELLİĞİ (ENTEGRASYON NOKTASI) ==================
+        
+        // Eğer çeviri işlemi başarılı olduysa ve içinde çevrilmiş metin varsa...
         if (translatedResult && translatedResult.targetText) {
+          console.log("[Background] Ham çeviri API'den başarıyla alındı:", translatedResult.targetText);
+          
+          // Zenginleştirme fonksiyonuna göndereceğimiz verileri hazırlıyoruz.
           const originalText = request.data.text;
           const translatedText = translatedResult.targetText;
 
-          // Fonksiyonumuzu çağırarak çeviriyi zenginleştiriyoruz
+          console.log("[Background] Teknik terim zenginleştirme fonksiyonu (enrichTranslation) çağrılıyor...");
+          
+          // tech_dictionary.js dosyasındaki ana fonksiyonumuzu çağırarak çeviriyi zenginleştiriyoruz.
           const enrichedText = enrichTranslation(originalText, translatedText);
 
+          console.log("[Background] Zenginleştirme tamamlandı. Sonuç contentScript'e gönderilecek.");
+          
+          // API'den gelen orijinal sonuç objesini kopyalıyor (...translatedResult) ve sadece
+          // 'targetText' alanını kendi zenginleştirdiğimiz metinle değiştiriyoruz.
+          // Bu, eklentinin diğer özelliklerinin (örn: kaynak dil tespiti) bozulmamasını sağlar.
           resultToSend = { ...translatedResult, targetText: enrichedText };
+        } else {
+          console.warn("[Background] UYARI: Çeviri API'sinden sonuç alınamadı veya sonuç boş. Zenginleştirme atlanıyor.");
         }
 
-        // Sonucu geri gönder (eğer zenginleştirildiyse kopyayı, değilse orijinali gönderir)
+        // Nihai sonucu (zenginleştirilmiş veya ham çeviri) isteği yapan contentScript'e geri gönderiyoruz.
         sendResponse(resultToSend);
+        
       } else if (request.type === "tts") {
         request.data.setting = setting;
         await TTS.playTtsQueue(request.data);

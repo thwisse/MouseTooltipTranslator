@@ -62,7 +62,13 @@ var tooltipRemoveTime = 3000;
 var autoReaderScrollTime = 400;
 
 var listenText = "";
-let originalSourceTextForTooltip = ""; // <-- BU SATIRI EKLE
+
+// --- BİZİM EKLEDİĞİMİZ DEĞİŞKEN ---
+// Bu değişken, özelliğimizin kalbidir. Kullanıcının seçtiği veya üzerine geldiği
+// orijinal, ham İngilizce metni saklamak için BİZİM tarafımızdan eklendi.
+// 'stagedText' gibi diğer değişkenler işlem sırasında değişebileceği için,
+// zenginleştirme fonksiyonuna her zaman en saf halini gönderebilmek adına bu ayrı değişkeni kullanıyoruz.
+let originalSourceTextForTooltip = "";
 
 //tooltip core======================================================================
 
@@ -132,12 +138,27 @@ function isOtherServiceActive(excludeSelect = false) {
   return listenText || isAutoReaderRunning || (!excludeSelect && selectedText);
 }
 
-//process detected word
+/**
+ * Bu fonksiyon, fareyle üzerine gelme (mouseover) veya metin seçme (select) ile
+ * tespit edilen metni işlemek için merkezi bir rol oynar.
+ * @param {string} text - Tespit edilen yeni metin.
+ * @param {string} actionType - İşlemin türü ('mouseover' veya 'select').
+ * @param {Range} range - Metnin sayfadaki konumunu belirten Range objesi (sadece mouseover için).
+ */
 async function stageTooltipText(text, actionType, range) {
+  // --- Fonksiyon Başlangıcı ve Girdi Kontrolü ---
+  console.log(`[ContentScript] stageTooltipText tetiklendi. Eylem: '${actionType}', Gelen Metin: '${text}'`);
+
+  // --- Orijinal Metni Güvenle Saklama (BİZİM EKLEDİĞİMİZ MANTIK) ---
+  // Eğer yeni gelen metin (text), bir önceki adımda işleme alınan metinden (stagedText) farklıysa,
+  // bu yeni metni, zenginleştirme için kullanılacak olan ana değişkenimize atıyoruz.
+  // Bu kontrol, aynı metin için gereksiz yere atama yapılmasını önler.
   if (stagedText !== text) {
     originalSourceTextForTooltip = text;
+    console.log(`[ContentScript] Yeni bir metin algılandı. 'originalSourceTextForTooltip' güncellendi: '${originalSourceTextForTooltip}'`);
   }
 
+  // Eklentinin, çeviriyi gösterme veya TTS'i çalıştırma koşullarını kontrol eden standart mantığı
   var isTtsOn =
     keyDownList[setting["TTSWhen"]] ||
     (setting["TTSWhen"] == "select" && actionType == "select");
@@ -152,6 +173,7 @@ async function stageTooltipText(text, actionType, range) {
     !util.isExtensionOnline() ||
     (selectedText == prevSelected && !text && actionType == "select")
   ) {
+    // Koşullar sağlanmıyorsa (örn: metin aynı, pencere odakta değil), işlemi durdur.
     return;
   } else if (!text) {
     stagedText = text;
@@ -164,8 +186,14 @@ async function stageTooltipText(text, actionType, range) {
     hideTooltip();
   }
 
+  // Mevcut metni, bir sonraki kontrolde karşılaştırma yapabilmek için 'stagedText'e atıyoruz.
   stagedText = text;
   
+  // --- Background Script ile İletişim (BİZİM DEĞİŞTİRDİĞİMİZ YER) ---
+  console.log(`[ContentScript] Çeviri ve zenginleştirme için background.js'e istek gönderiliyor. Gönderilen metin: '${originalSourceTextForTooltip}'`);
+
+  // Arka plana çeviri isteği yolluyoruz. DİKKAT: Burada 'text' yerine 'originalSourceTextForTooltip' değişkenini kullanıyoruz.
+  // Bu, her zaman en doğru ve saf orijinal metni göndermemizi garantiler.
   var translatedData = await util.requestTranslate(
     originalSourceTextForTooltip,
     setting["translateSource"],
@@ -173,6 +201,10 @@ async function stageTooltipText(text, actionType, range) {
     setting["translateReverseTarget"]
   );
 
+  // Gelen veriyi log'luyoruz. 'targetText' burada zenginleştirilmiş metni içermelidir.
+  console.log("[ContentScript] background.js'den cevap alındı:", translatedData);
+
+  // ... (Eklentinin, gelen cevabı işleyen standart mantığı)
   var { targetText, sourceLang, targetLang } = translatedData;
 
   if (stagedText != text) {
