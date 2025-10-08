@@ -1,4 +1,12 @@
 {
+  "higher-order functions": [
+    "yüksek mertebeden fonksiyonlar",
+    "yüksek dereceli fonksiyonlar"
+  ],
+  "higher order functions": [
+    "yüksek mertebeden fonksiyonlar",
+    "yüksek dereceli fonksiyonlar"
+  ],
   "higher-order function": [
     "yüksek mertebeden fonksiyon",
     "yüksek dereceli fonksiyon"
@@ -14,6 +22,14 @@
   "top level properties": [
     "üst düzey özellikler",
     "en üst düzey özellikler"
+  ],
+  "top-level property": [
+    "üst düzey özellik",
+    "en üst düzey özellik"
+  ],
+  "top level property": [
+    "üst düzey özellik",
+    "en üst düzey özellik"
   ],
   "explicit type specification": [
     "açık tür belirtimi",
@@ -45,9 +61,17 @@
     "birincil yapıcı",
     "birincil kurucu"
   ],
+  "secondary constructors": [
+    "ikincil yapıcılar",
+    "ikincil kurucular"
+  ],
   "secondary constructor": [
     "ikincil yapıcı",
     "ikincil kurucu"
+  ],
+  "primary constructors": [
+    "birincil yapıcılar",
+    "birincil kurucular"
   ],
   "companion object": [
     "yardımcı nesne",
@@ -55,22 +79,59 @@
     "eşlikçi nesne",
     "refakatçi nesne"
   ],
+  "companion objects": [
+    "yardımcı nesneler",
+    "tamamlayıcı nesneler",
+    "eşlikçi nesneler",
+    "refakatçi nesneler"
+  ],
   "data class": [
     "veri sınıfı"
+  ],
+  "data classes": [
+    "veri sınıfları"
   ],
   "sealed class": [
     "mühürlü sınıf",
     "kapalı sınıf"
   ],
+  "sealed classes": [
+    "mühürlü sınıflar",
+    "kapalı sınıflar"
+  ],
+  "abstract class": [
+    "soyut sınıf"
+  ],
+  "abstract classes": [
+    "soyut sınıflar"
+  ],
+  "open class": [
+    "açık sınıf"
+  ],
+  "open classes": [
+    "açık sınıflar"
+  ],
   "suspend function": [
     "askıya alınabilir fonksiyon",
     "durdurulabilir fonksiyon"
   ],
+  "suspend functions": [
+    "askıya alınabilir fonksiyonlar",
+    "durdurulabilir fonksiyonlar"
+  ],
   "extension function": [
-    "genişletme fonksiyonu"
+    "genişletme fonksiyonu",
+    "uzantı fonksiyonu"
+  ],
+  "extension functions": [
+    "genişletme fonksiyonları",
+    "uzantı fonksiyonları"
   ],
   "lambda expression": [
     "lambda ifadesi"
+  ],
+  "lambda expressions": [
+    "lambda ifadeleri"
   ],
   "late-initialized": [
     "geç başlatılan",
@@ -103,9 +164,16 @@
   "local variable": [
     "yerel değişken"
   ],
+  "local variables": [
+    "yerel değişkenler"
+  ],
   "global variable": [
     "küresel değişken",
     "global değişken"
+  ],
+  "global variables": [
+    "küresel değişkenler",
+    "global değişkenler"
   ],
   "null safety": [
     "null güvenliği",
@@ -124,15 +192,37 @@
     "dönüş tipi",
     "dönüş türü"
   ],
+  "function type": [
+    "fonksiyon türü",
+    "fonksiyon tipi"
+  ],
   "smart cast": [
     "akıllı dönüştürme",
+    "akıllı-dönüştürme",
     "akıllı tip dönüşümü"
+  ],
+  "smart-cast": [
+    "akıllı-dönüştürme",
+    "akıllı dönüştürme",
+    "akıllı tip dönüşümü"
+  ],
+  "boilerplate codes": [
+    "kalıp kodlar",
+    "tekrarlayan kodlar",
+    "şablon kodlar",
+    "basmakalıp kodlar"
   ],
   "boilerplate code": [
     "kalıp kod",
     "tekrarlayan kod",
     "şablon kod",
     "basmakalıp kod"
+  ],
+  "boilerplate": [
+    "kalıp",
+    "tekrarlayan",
+    "şablon",
+    "basmakalıp"
   ],
   "compile-time": [
     "derleme zamanı"
@@ -143,6 +233,14 @@
   "entry point": [
     "giriş noktası"
   ],
+  "data type": [
+    "veri türü",
+    "veri tipi"
+  ],
+  "data types": [
+    "veri türleri",
+    "veri tipleri"
+  ],
   "type specification": [
     "tür belirtimi",
     "tip belirtimi"
@@ -150,18 +248,34 @@
   "flow": [
     "akış"
   ],
+  "flows": [
+    "akışlar"
+  ],
   "activity": [
     "aktivite"
   ],
+  "activities": [
+    "aktiviteler"
+  ],
   "fragment": [
     "parça"
+  ],
+  "fragments": [
+    "parçalar"
   ],
   "layout": [
     "düzen",
     "yerleşim"
   ],
+  "layouts": [
+    "düzenler",
+    "yerleşimler"
+  ],
   "adapter": [
     "adaptör"
+  ],
+  "adapters": [
+    "adaptörler"
   ],
   "intent": [
     "niyet"
@@ -195,14 +309,24 @@
     "tekil",
     "tekil nesne"
   ],
+  "singletons": [
+    "tekiller",
+    "tekil nesneler"
+  ],
   "context": [
     "bağlam"
+  ],
+  "contexes": [
+    "bağlamlar"
   ],
   "thread": [
     "iş parçacığı"
   ],
   "range": [
     "aralık"
+  ],
+  "ranges": [
+    "aralıklar"
   ],
   "declaration": [
     "bildirim",
@@ -228,12 +352,28 @@
     "tetikler",
     "tetikleyici"
   ],
+  "trigger": [
+    "tetikleyici",
+    "tetik"
+  ],
   "asynchronous": [
     "asenkron"
   ],
   "suffix": [
     "sonek",
     "son ek"
+  ],
+  "prefix": [
+    "önek",
+    "ön ek"
+  ],
+  "suffixes": [
+    "sonekler",
+    "son ekler"
+  ],
+  "prefixes": [
+    "önekler",
+    "ön ekler"
   ],
   "callback": [
     "geri arama"
@@ -248,6 +388,12 @@
     "başlatan",
     "ilklendiren"
   ],
+  "initializers": [
+    "başlatıcılar",
+    "ilklendiriciler",
+    "başlatanlar",
+    "ilklendirenler"
+  ],
   "initialize": [
     "başlat",
     "ilklendir",
@@ -257,6 +403,10 @@
     "tamsayı",
     "tam sayı"
   ],
+  "integers": [
+    "tamsayılar",
+    "tam sayılar"
+  ],
   "interoperability": [
     "birlikte çalışabilirlik",
     "etkileşim"
@@ -265,11 +415,18 @@
     "yapıcı",
     "kurucu"
   ],
+  "constructors": [
+    "yapıcılar",
+    "kurucular"
+  ],
   "read-only": [
     "salt okunur"
   ],
   "property": [
     "özellik"
+  ],
+  "properties": [
+    "özellikler"
   ],
   "signed": [
     "işaretli"
@@ -281,12 +438,31 @@
     "değiştirilebilir",
     "değişebilir"
   ],
+  "mutables": [
+    "değiştirilebilirler",
+    "değişebilirler"
+  ],
+  "mutability": [
+    "değiştirilebilirlik",
+    "değişebilirlik"
+  ],
   "immutable": [
     "değiştirilemez",
     "değişmez"
   ],
+  "immutables": [
+    "değiştirilemezler",
+    "değişmezler"
+  ],
+  "immutability": [
+    "değiştirilemezlik",
+    "değişmezlik"
+  ],
   "interface": [
     "arayüz"
+  ],
+  "interfaces": [
+    "arayüzler"
   ],
   "run-time": [
     "çalışma zamanı"
@@ -297,6 +473,9 @@
   "string": [
     "dize"
   ],
+  "strings": [
+    "diziler"
+  ],
   "initializing": [
     "başlatma",
     "ilklendir",
@@ -306,10 +485,27 @@
   "annotation": [
     "anotasyon",
     "notlama",
-    "ek açıklama"
+    "ek açıklama",
+    "açıklama"
+  ],
+  "annotations": [
+    "anotasyonlar",
+    "notlamalar",
+    "ek açıklamalar",
+    "açıklamalar"
   ],
   "keyword": [
     "anahtar kelime",
     "anahtar sözcük"
+  ],
+  "keywords": [
+    "anahtar kelimeler",
+    "anahtar sözcükler"
+  ],
+  "operator": [
+    "operatör",
+    "işlemci",
+    "işlem",
+    "işleç"
   ]
 }

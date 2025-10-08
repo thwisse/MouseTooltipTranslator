@@ -108,7 +108,7 @@ export function enrichTranslation(originalText, translatedText) {
           if (pluralShieldRegex.test(originalText)) termToDisplay = plural_en_term;
         }
 
-        enrichments.push({ start: startIndex, end: endIndex, newText: `${matchedWord} <b>(${termToDisplay})</b>` });
+        enrichments.push({ start: startIndex, end: endIndex, newText: `${matchedWord} (<b>${termToDisplay}</b>)` });
         for (let i = startIndex; i < endIndex; i++) claimedIndices[i] = true;
       }
     }
