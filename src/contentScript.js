@@ -932,22 +932,12 @@ function applyStyleSetting() {
       text-align: ${setting["tooltipTextAlign"]} !important;
       overflow-wrap: break-word !important;
       color: ${setting["tooltipFontColor"]} !important;
-      font-family: 
-        -apple-system, BlinkMacSystemFont,
-        "Segoe UI", "Roboto", "Oxygen",
-        "Ubuntu", "Cantarell", "Fira Sans",
-        "Droid Sans", "Helvetica Neue", sans-serif  !important;
+      /* --- FONT AİLESİ TANIMI BURADAN KALDIRILDI --- */
       white-space: pre-line;
     }
-
-    /* --- YENİ EKLENEN KURAL --- */
-    /* Yukarıdaki '*' seçicisi <b> etiketinin varsayılan stilini ezdiği için,
-       bu kural ile <b> ve <strong> etiketlerinin her zaman kalın olmasını garantiliyoruz. */
     .tippy-content b, .tippy-content strong {
       font-weight: bold !important;
     }
-    /* --- YENİ KURAL SONU --- */
-
     .tippy-box[data-theme~="custom"]{
       max-width: ${setting["tooltipWidth"]}px  !important;
       backdrop-filter: blur(${setting["tooltipBackgroundBlur"]}px) !important;
@@ -956,9 +946,6 @@ function applyStyleSetting() {
       box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
       opacity: 1.0;
     }
-    
-    /* ... (dosyanın geri kalan stil tanımlamaları aynı şekilde devam ediyor) ... */
-
     .tippy-box[data-theme~="ocr"]{
       max-width: $1000px  !important;
       backdrop-filter: blur(${setting["tooltipBackgroundBlur"]}px) !important;
