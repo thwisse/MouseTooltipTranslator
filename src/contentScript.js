@@ -146,11 +146,11 @@ function isOtherServiceActive(excludeSelect = false) {
  * @param {Range} range - Metnin sayfadaki konumunu belirten Range objesi (sadece mouseover için).
  */
 async function stageTooltipText(text, actionType, range) {
-  // --- YENİ LOGLAMA BAŞLANGICI ---
-  // Bu log, fonksiyonun hangi olay tarafından tetiklendiğini bize gösterecek ve
-  // çift tetiklenme sorununu teşhis etmemizi sağlayacak.
-  //console.log(`[ContentScript] stageTooltipText tetiklendi. Eylem TÜRÜ: '${actionType}'`);
-  // --- YENİ LOGLAMA SONU ---
+  // --- YENİ TEŞHİS LOGU ---
+  // Bu log, fonksiyonun hangi olayla, ne zaman ve hangi metinle tetiklendiğini bize gösterecek.
+  // Zaman damgası, olayların sıralamasını anlamak için kritik.
+  console.log(`[ContentScript] Tetiklendi | Zaman: ${Date.now()} | Eylem: '${actionType}' | Metin: "${text.substring(0, 30)}..."`);
+  // --- LOG SONU ---
 
   // --- Orijinal Metni Güvenle Saklama (BİZİM EKLEDİĞİMİZ MANTIK) ---
   if (stagedText !== text) {
@@ -187,7 +187,7 @@ async function stageTooltipText(text, actionType, range) {
 
   // Mevcut metni, bir sonraki kontrolde karşılaştırma yapabilmek için 'stagedText'e atıyoruz.
   stagedText = text;
-  
+
   // --- Background Script ile İletişim (BİZİM DEĞİŞTİRDİĞİMİZ YER) ---
   // console.log(`[ContentScript] Çeviri ve zenginleştirme için background.js'e istek gönderiliyor. Gönderilen metin: '${originalSourceTextForTooltip}'`);
 
@@ -231,7 +231,7 @@ async function stageTooltipText(text, actionType, range) {
       isTtsSwap
     );
   }
-}async function handleTTS(
+} async function handleTTS(
   text,
   sourceLang,
   targetText,
@@ -348,57 +348,35 @@ function hideHighlight(checkSkipCase) {
   $(".mtt-highlight")?.remove();
 }
 
-
-function enrichSourceText(sourceText, termsToBold) {
-  if (!termsToBold || termsToBold.length === 0) {
-    return sourceText;
-  }
-
-  let enrichedSource = sourceText;
-
-  // Artık 'akıllı' bir analiz yok. Sadece verilen listedeki her kelimeyi
-  // basit ve güvenilir Regex ile bulup değiştiriyoruz.
-  for (const term of termsToBold) {
-    // 'Brute force' testinde çalıştığını kanıtladığımız yöntem:
-    // Basit bir Regex ve 'gi' bayrakları.
-    const regex = new RegExp(`\\b(${term})\\b`, 'gi');
-    enrichedSource = enrichedSource.replace(regex, `<b>$1</b>`);
-  }
-  return enrichedSource;
-}
-
 function handleTooltip(text, translatedData, actionType, range) {
-  // Gelen veriden 'usedTerms' dizisini alıyoruz.
-  var { targetText, sourceLang, targetLang, transliteration, dict, imageUrl, usedTerms } =
+  // Gelen veriden 'enrichedSourceText'i de alıyoruz. Hata durumunda ham 'text' kullanılır.
+  var { targetText, sourceLang, targetLang, transliteration, dict, imageUrl, enrichedSourceText = text } =
     translatedData;
 
   var tooltipMainText;
 
-  if (imageUrl) { /* ... */ } 
-  else if (setting["tooltipWordDictionary"] == "true" && dict) { /* ... */ } 
+  if (imageUrl) { /* ... (değişiklik yok) */ }
+  else if (setting["tooltipWordDictionary"] == "true" && dict) { /* ... (değişiklik yok) */ }
   else {
     const turkishPart = `<span dir="${getRtlDir(targetLang)}">${targetText}</span>`;
-
-    // Yeni basit ve güvenilir 'enrichSourceText' fonksiyonunu çağırıyoruz.
-    const enrichedSource = enrichSourceText(text, usedTerms);
-
-    const englishPart = `<span dir="${getRtlDir(sourceLang)}">${enrichedSource}</span>`;
+    // Arka plandan gelen, hazır ve kalınlaştırılmış HTML'i doğrudan kullanıyoruz.
+    const englishPart = `<span dir="${getRtlDir(sourceLang)}">${enrichedSourceText}</span>`;
 
     tooltipMainText = `<div>${turkishPart}</div><hr style='margin: 5px 0; border: none; border-top: 1px solid #ddd;'><div>${englishPart}</div>`;
   }
-  
+
   // Eklentinin alt bilgi kısmını oluşturan standart kod.
   var tooltipOriText = "";
   var isShowLangOn = setting["tooltipInfoSourceLanguage"] == "true";
   var isTransliterationOn = setting["tooltipInfoTransliteration"] == "true";
   var tooltipTransliteration = isTransliterationOn ? transliteration : "";
   var tooltipLang = isShowLangOn ? langListOpposite[sourceLang] : "";
-  
+
   var tooltipSubText =
     wrapInfoText(tooltipOriText, "i", sourceLang) +
     wrapInfoText(tooltipTransliteration, "b") +
     wrapInfoText(tooltipLang, "sup");
-  
+
   var tooltipText = tooltipMainText + tooltipSubText;
 
   showTooltip(tooltipText);
@@ -435,12 +413,12 @@ function wrapDict(dict, targetLang) {
     .map((line) => line.split(":")[0])
     .map(
       (text) =>
-        (htmlText = htmlText.replace(
+      (htmlText = htmlText.replace(
+        text,
+        $("<b/>", {
           text,
-          $("<b/>", {
-            text,
-          }).prop("outerHTML")
-        ))
+        }).prop("outerHTML")
+      ))
     );
   return htmlText;
 }
@@ -785,8 +763,8 @@ function scrollAutoReader(range) {
     : $("body,html");
   const scrollTopValue = util.isPDFViewer()
     ? $("#viewerContainer").scrollTop() +
-      rect.top -
-      $("#viewerContainer").height() / 2
+    rect.top -
+    $("#viewerContainer").height() / 2
     : window.scrollY + rect.top - window.innerHeight / 2;
 
   scrollContainer.animate({ scrollTop: scrollTopValue }, autoReaderScrollTime);

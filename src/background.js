@@ -35,7 +35,7 @@ var recentRecord = {};
  */
 (async function backgroundInit() {
   try {
-    
+
     injectContentScriptForAllTab(); // check extension updated, then re inject content script
     addInstallUrl(introSiteUrl); // check first start and redirect to how to use url
     // addUninstallUrl(util.getReviewUrl());  //listen extension uninstall and
@@ -65,30 +65,30 @@ function addMessageListener() {
   ) {
     // Gelen istekleri asenkron olarak işlemek için bir yapı kuruyoruz.
     (async () => {
-      
+
       // ---------------------------------------------------------------------------------
       // --- BİZİM EKLEDİĞİMİZ ÖZELLİĞİN ÇALIŞTIĞI ANA BLOK ---
       // ---------------------------------------------------------------------------------
-      
+
       // Eğer gelen mesajın tipi "translate" ise, yani bir çeviri isteği ise...
       if (request.type === "translate") {
-  var translatedResult = await translate(request.data, setting);
-  var resultToSend = translatedResult; 
+        var translatedResult = await translate(request.data, setting);
+        var resultToSend = translatedResult;
 
-  if (translatedResult && translatedResult.targetText) {
-    const originalText = request.data.text;
-    const translatedText = translatedResult.targetText;
+        if (translatedResult && translatedResult.targetText) {
+          const originalText = request.data.text;
+          const translatedText = translatedResult.targetText;
 
-    const enrichmentResult = enrichTranslation(originalText, translatedText);
+          const enrichmentResult = enrichTranslation(originalText, translatedText);
 
-    resultToSend = { 
-      ...translatedResult, 
-      targetText: enrichmentResult.enrichedText,
-      usedTerms: enrichmentResult.usedTerms // <-- Önemli olan bu satır
-    };
-  }
-  sendResponse(resultToSend);
-} else if (request.type === "tts") { // ... (Diğer eklenti özellikleri)
+          resultToSend = {
+            ...translatedResult,
+            targetText: enrichmentResult.enrichedText,
+            enrichedSourceText: enrichmentResult.enrichedSource
+          };
+        }
+        sendResponse(resultToSend);
+      } else if (request.type === "tts") { // ... (Diğer eklenti özellikleri)
         request.data.setting = setting;
         await TTS.playTtsQueue(request.data);
         sendResponse({});
@@ -216,7 +216,7 @@ async function updateCopyContext({ targetText }) {
 async function removeContext(id) {
   try {
     await browser.contextMenus.remove(id);
-  } catch (error) {}
+  } catch (error) { }
 }
 async function removeContextAll(id) {
   await browser.contextMenus.removeAll();
