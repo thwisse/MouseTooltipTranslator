@@ -1,511 +1,251 @@
 {
-  "higher-order functions": [
-    "yüksek mertebeden fonksiyonlar",
-    "yüksek dereceli fonksiyonlar"
-  ],
-  "higher order functions": [
-    "yüksek mertebeden fonksiyonlar",
-    "yüksek dereceli fonksiyonlar"
-  ],
-  "higher-order function": [
-    "yüksek mertebeden fonksiyon",
-    "yüksek dereceli fonksiyon"
-  ],
-  "higher order function": [
-    "yüksek mertebeden fonksiyon",
-    "yüksek dereceli fonksiyon"
-  ],
-  "top-level properties": [
-    "üst düzey özellikler",
-    "en üst düzey özellikler"
-  ],
-  "top level properties": [
-    "üst düzey özellikler",
-    "en üst düzey özellikler"
-  ],
-  "top-level property": [
-    "üst düzey özellik",
-    "en üst düzey özellik"
-  ],
-  "top level property": [
-    "üst düzey özellik",
-    "en üst düzey özellik"
-  ],
-  "explicit type specification": [
-    "açık tür belirtimi",
-    "belirgin tür belirtimi",
-    "açık tip belirtimi",
-    "belirgin tip belirtimi"
-  ],
-  "implicit type specification": [
-    "örtük tür belirtimi",
-    "örtük tip belirtimi",
-    "kapalı tür belirtimi",
-    "kapalı tip belirtimi"
-  ],
-  "dependency injection": [
-    "bağımlılık enjeksiyonu"
-  ],
-  "garbage collector": [
-    "çöp toplayıcısı",
-    "çöp toplayıcı"
-  ],
-  "garbage collection": [
-    "çöp toplama"
-  ],
-  "unit test": [
-    "birim testi",
-    "ünite testi"
-  ],
-  "primary constructor": [
-    "birincil yapıcı",
-    "birincil kurucu"
-  ],
-  "secondary constructors": [
-    "ikincil yapıcılar",
-    "ikincil kurucular"
-  ],
-  "secondary constructor": [
-    "ikincil yapıcı",
-    "ikincil kurucu"
-  ],
-  "primary constructors": [
-    "birincil yapıcılar",
-    "birincil kurucular"
-  ],
-  "companion object": [
-    "yardımcı nesne",
-    "tamamlayıcı nesne",
-    "eşlikçi nesne",
-    "refakatçi nesne"
-  ],
-  "companion objects": [
-    "yardımcı nesneler",
-    "tamamlayıcı nesneler",
-    "eşlikçi nesneler",
-    "refakatçi nesneler"
-  ],
-  "data class": [
-    "veri sınıfı"
-  ],
-  "data classes": [
-    "veri sınıfları"
-  ],
-  "sealed class": [
-    "mühürlü sınıf",
-    "kapalı sınıf"
-  ],
-  "sealed classes": [
-    "mühürlü sınıflar",
-    "kapalı sınıflar"
-  ],
-  "abstract class": [
-    "soyut sınıf"
-  ],
-  "abstract classes": [
-    "soyut sınıflar"
-  ],
-  "open class": [
-    "açık sınıf"
-  ],
-  "open classes": [
-    "açık sınıflar"
-  ],
-  "suspend function": [
-    "askıya alınabilir fonksiyon",
-    "durdurulabilir fonksiyon"
-  ],
-  "suspend functions": [
-    "askıya alınabilir fonksiyonlar",
-    "durdurulabilir fonksiyonlar"
-  ],
-  "extension function": [
-    "genişletme fonksiyonu",
-    "uzantı fonksiyonu"
-  ],
-  "extension functions": [
-    "genişletme fonksiyonları",
-    "uzantı fonksiyonları"
-  ],
-  "lambda expression": [
-    "lambda ifadesi"
-  ],
-  "lambda expressions": [
-    "lambda ifadeleri"
-  ],
-  "late-initialized": [
-    "geç başlatılan",
-    "geç ilklendirilen"
-  ],
-  "Kotlin-first": [
-    "Kotlin-öncelikli",
-    "Kotlin öncelikli"
-  ],
-  "higher-order": [
-    "yüksek mertebeden",
-    "yüksek dereceli"
-  ],
-  "higher order": [
-    "yüksek mertebeden",
-    "yüksek dereceli"
-  ],
-  "main function": [
-    "ana fonksiyon",
-    "ana işlev"
-  ],
-  "standard input": [
-    "standart giriş",
-    "standart girdi"
-  ],
-  "standard output": [
-    "standart çıkış",
-    "standart çıktı"
-  ],
-  "local variable": [
-    "yerel değişken"
-  ],
-  "local variables": [
-    "yerel değişkenler"
-  ],
-  "global variable": [
-    "küresel değişken",
-    "global değişken"
-  ],
-  "global variables": [
-    "küresel değişkenler",
-    "global değişkenler"
-  ],
-  "null safety": [
-    "null güvenliği",
-    "null emniyeti"
-  ],
-  "null-safe": [
-    "null-güvenli",
-    "null emniyetli",
-    "null güvenli"
-  ],
-  "type inference": [
-    "tip çıkarımı",
-    "tür çıkarımı"
-  ],
-  "return type": [
-    "dönüş tipi",
-    "dönüş türü"
-  ],
-  "function type": [
-    "fonksiyon türü",
-    "fonksiyon tipi"
-  ],
-  "smart cast": [
-    "akıllı dönüştürme",
-    "akıllı-dönüştürme",
-    "akıllı tip dönüşümü"
-  ],
-  "smart-cast": [
-    "akıllı-dönüştürme",
-    "akıllı dönüştürme",
-    "akıllı tip dönüşümü"
-  ],
-  "boilerplate codes": [
-    "kalıp kodlar",
-    "tekrarlayan kodlar",
-    "şablon kodlar",
-    "basmakalıp kodlar"
-  ],
-  "boilerplate code": [
-    "kalıp kod",
-    "tekrarlayan kod",
-    "şablon kod",
-    "basmakalıp kod"
-  ],
-  "boilerplate": [
-    "kalıp",
-    "tekrarlayan",
-    "şablon",
-    "basmakalıp"
-  ],
-  "compile-time": [
-    "derleme zamanı"
-  ],
-  "compile time": [
-    "derleme zamanı"
-  ],
-  "entry point": [
-    "giriş noktası"
-  ],
-  "data type": [
-    "veri türü",
-    "veri tipi"
-  ],
-  "data types": [
-    "veri türleri",
-    "veri tipleri"
-  ],
-  "type specification": [
-    "tür belirtimi",
-    "tip belirtimi"
-  ],
-  "flow": [
-    "akış"
-  ],
-  "flows": [
-    "akışlar"
-  ],
-  "activity": [
-    "aktivite"
-  ],
-  "activities": [
-    "aktiviteler"
-  ],
-  "fragment": [
-    "parça"
-  ],
-  "fragments": [
-    "parçalar"
-  ],
-  "layout": [
-    "düzen",
-    "yerleşim"
-  ],
-  "layouts": [
-    "düzenler",
-    "yerleşimler"
-  ],
-  "adapter": [
-    "adaptör"
-  ],
-  "adapters": [
-    "adaptörler"
-  ],
-  "intent": [
-    "niyet"
-  ],
-  "inheritance": [
-    "kalıtım",
-    "miras"
-  ],
-  "represent": [
-    "temsil et",
-    "temsil",
-    "temsil etme"
-  ],
-  "polymorphism": [
-    "çok biçimlilik",
-    "polimorfizm"
-  ],
-  "infers": [
-    "çıkarır",
-    "tümdengelim yapar",
-    "çıkar"
-  ],
-  "encapsulation": [
-    "kapsülleme",
-    "sarmalama"
-  ],
-  "abstraction": [
-    "soyutlama"
-  ],
-  "singleton": [
-    "tekil",
-    "tekil nesne"
-  ],
-  "singletons": [
-    "tekiller",
-    "tekil nesneler"
-  ],
-  "context": [
-    "bağlam"
-  ],
-  "contexes": [
-    "bağlamlar"
-  ],
-  "thread": [
-    "iş parçacığı"
-  ],
-  "range": [
-    "aralık"
-  ],
-  "ranges": [
-    "aralıklar"
-  ],
-  "declaration": [
-    "bildirim",
-    "deklarasyon"
-  ],
-  "explicitly": [
-    "açıkça",
-    "belirgin bir şekilde"
-  ],
-  "implicitly": [
-    "örtük olarak",
-    "kapalı olarak"
-  ],
-  "explicit": [
-    "açık",
-    "belirgin"
-  ],
-  "implicit": [
-    "örtük",
-    "kapalı"
-  ],
-  "triggers": [
-    "tetikler",
-    "tetikleyici"
-  ],
-  "trigger": [
-    "tetikleyici",
-    "tetik"
-  ],
-  "asynchronous": [
-    "asenkron"
-  ],
-  "suffix": [
-    "sonek",
-    "son ek"
-  ],
-  "prefix": [
-    "önek",
-    "ön ek"
-  ],
-  "suffixes": [
-    "sonekler",
-    "son ekler"
-  ],
-  "prefixes": [
-    "önekler",
-    "ön ekler"
-  ],
-  "callback": [
-    "geri arama"
-  ],
-  "syntax": [
-    "sözdizimi",
-    "sentaks"
-  ],
-  "initializer": [
-    "başlatıcı",
-    "ilklendirici",
-    "başlatan",
-    "ilklendiren"
-  ],
-  "initializers": [
-    "başlatıcılar",
-    "ilklendiriciler",
-    "başlatanlar",
-    "ilklendirenler"
-  ],
-  "initialize": [
-    "başlat",
-    "ilklendir",
-    "ilklendirme"
-  ],
-  "integer": [
-    "tamsayı",
-    "tam sayı"
-  ],
-  "integers": [
-    "tamsayılar",
-    "tam sayılar"
-  ],
-  "interoperability": [
-    "birlikte çalışabilirlik",
-    "etkileşim"
-  ],
-  "constructor": [
-    "yapıcı",
-    "kurucu"
-  ],
-  "constructors": [
-    "yapıcılar",
-    "kurucular"
-  ],
-  "read-only": [
-    "salt okunur"
-  ],
-  "property": [
-    "özellik"
-  ],
-  "properties": [
-    "özellikler"
-  ],
-  "signed": [
-    "işaretli"
-  ],
-  "unsigned": [
-    "işaretsiz"
-  ],
-  "mutable": [
-    "değiştirilebilir",
-    "değişebilir"
-  ],
-  "mutables": [
-    "değiştirilebilirler",
-    "değişebilirler"
-  ],
-  "mutability": [
-    "değiştirilebilirlik",
-    "değişebilirlik"
-  ],
-  "immutable": [
-    "değiştirilemez",
-    "değişmez"
-  ],
-  "immutables": [
-    "değiştirilemezler",
-    "değişmezler"
-  ],
-  "immutability": [
-    "değiştirilemezlik",
-    "değişmezlik"
-  ],
-  "interface": [
-    "arayüz"
-  ],
-  "interfaces": [
-    "arayüzler"
-  ],
-  "run-time": [
-    "çalışma zamanı"
-  ],
-  "runtime": [
-    "çalışma zamanı"
-  ],
-  "string": [
-    "dize"
-  ],
-  "strings": [
-    "diziler"
-  ],
-  "initializing": [
-    "başlatma",
-    "ilklendir",
-    "ilklendirme",
-    "başlat"
-  ],
-  "annotation": [
-    "anotasyon",
-    "notlama",
-    "ek açıklama",
-    "açıklama"
-  ],
-  "annotations": [
-    "anotasyonlar",
-    "notlamalar",
-    "ek açıklamalar",
-    "açıklamalar"
-  ],
-  "keyword": [
-    "anahtar kelime",
-    "anahtar sözcük"
-  ],
-  "keywords": [
-    "anahtar kelimeler",
-    "anahtar sözcükler"
-  ],
-  "operator": [
-    "operatör",
-    "işlemci",
-    "işlem",
-    "işleç"
-  ]
+  "higher-order functions": ["yüksek mertebeden fonksiyonlar","yüksek dereceli fonksiyonlar"],
+  "higher order functions": ["yüksek mertebeden fonksiyonlar","yüksek dereceli fonksiyonlar"],
+  "higher-order function": ["yüksek mertebeden fonksiyon","yüksek dereceli fonksiyon"],
+  "higher order function": ["yüksek mertebeden fonksiyon","yüksek dereceli fonksiyon"],
+  "higher-order property": ["yüksek mertebeden özellik","yüksek dereceli özellik"],
+  "higher order property": ["yüksek mertebeden özellik","yüksek dereceli özellik"],
+  "higher-order properties": ["yüksek mertebeden özellikler","yüksek dereceli özellikler"],
+  "higher order properties": ["yüksek mertebeden özellikler","yüksek dereceli özellikler"],
+  "top-level properties": ["üst düzey özellikler","en üst düzey özellikler"],
+  "top level properties": ["üst düzey özellikler","en üst düzey özellikler"],
+  "top-level property": ["üst düzey özellik","en üst düzey özellik"],
+  "top level property": ["üst düzey özellik","en üst düzey özellik"],
+  "explicit type specification": ["açık tür belirtimi","belirgin tür belirtimi","açık tip belirtimi","belirgin tip belirtimi"],
+  "implicit type specification": ["örtük tür belirtimi","örtük tip belirtimi","kapalı tür belirtimi","kapalı tip belirtimi"],
+  "single-property class": ["tek özellikli sınıf","tek özellik sınıfı"],
+  "single property class": ["tek özellikli sınıf","tek özellik sınıfı"],
+
+
+  "dependency injection": ["bağımlılık enjeksiyonu"],
+  "garbage collector": ["çöp toplayıcısı","çöp toplayıcı"],
+  "garbage collection": ["çöp toplama"],
+  "unit test": ["birim testi","ünite testi"],
+  "primary constructor": ["birincil yapıcı","birincil kurucu"],
+  "primary constructors": ["birincil yapıcılar","birincil kurucular"],
+  "secondary constructors": ["ikincil yapıcılar","ikincil kurucular"],
+  "secondary constructor": ["ikincil yapıcı","ikincil kurucu"],
+  "companion object": ["yardımcı nesne","tamamlayıcı nesne","eşlikçi nesne","refakatçi nesne"],
+  "companion objects": ["yardımcı nesneler","tamamlayıcı nesneler","eşlikçi nesneler","refakatçi nesneler"],
+  "object allocation": ["nesne tahsisi","nesne ayırma"],
+  "object allocations": ["nesne tahsisleri","nesne ayırmaları"],
+  "data modeling": ["veri modelleme"],
+  "data models": ["veri modelleri"],
+  "data class": ["veri sınıfı"],
+  "data classes": ["veri sınıfları"],
+  "sealed class": ["mühürlü sınıf","kapalı sınıf", "sealed sınıf"],
+  "sealed classes": ["mühürlü sınıflar","kapalı sınıflar", "sealed sınıflar"],
+  "sealed interface": ["mühürlü arayüz","kapalı arayüz", "sealed arayüz"],
+  "sealed interfaces": ["mühürlü arayüzler","kapalı arayüzler", "sealed arayüzler"],
+  "object declaration": ["nesne bildirimi","nesne deklarasyonu"],
+  "object declarations": ["nesne bildirimleri","nesne deklarasyonları"],
+  "object expression": ["nesne ifadesi","nesne beyanı"],
+  "object expressions": ["nesne ifadeleri","nesne beyanları"],
+  "state machine": ["durum makinesi"],
+  "state machines": ["durum makineleri"],
+  "value class": ["değer sınıfı"],
+  "value classes": ["değer sınıfları"],
+  "type hierarchy": ["tür hiyerarşisi","tip hiyerarşisi"],
+  "type hierarchies": ["tür hiyerarşileri","tip hiyerarşileri"],
+  "data structure": ["veri yapısı","veri struktürü"],
+  "data structures": ["veri yapıları","veri strüktürleri"],
+  "standard library": ["standart kütüphane","standart kütüphaneler"],
+  "standard libraries": ["standart kütüphaneler","standart kütüphaneler"],
+  "top-level": ["üst düzey","en üst düzey"],
+  "top level": ["üst düzey","en üst düzey"],
+  "abstract class": ["soyut sınıf"],
+  "abstract classes": ["soyut sınıflar"],
+  "open class": ["açık sınıf"],
+  "open classes": ["açık sınıflar"],
+  "suspend function": ["askıya alınabilir fonksiyon","durdurulabilir fonksiyon"],
+  "suspend functions": ["askıya alınabilir fonksiyonlar","durdurulabilir fonksiyonlar"],
+  "extension function": ["genişletme fonksiyonu","uzantı fonksiyonu"],
+  "extension functions": ["genişletme fonksiyonları","uzantı fonksiyonları"],
+  "parameter target": ["parametre hedefi"],
+  "property target": ["özellik hedefi"],
+  "field target": ["alan hedefi"],
+  "inline function": ["satır içi fonksiyon"],
+  "inline functions": ["satır içi fonksiyonlar"],
+  "lambda expression": ["lambda ifadesi"],
+  "lambda expressions": ["lambda ifadeleri"],
+  "late-initialized": ["geç başlatılan","geç ilklendirilen"],
+  "Kotlin-first": ["Kotlin-öncelikli","Kotlin öncelikli"],
+  "higher-order": ["yüksek mertebeden","yüksek dereceli"],
+  "higher order": ["yüksek mertebeden","yüksek dereceli"],
+  "main function": ["ana fonksiyon","ana işlev"],
+  "standard input": ["standart giriş","standart girdi"],
+  "standard output": ["standart çıkış","standart çıktı"],
+  "local variable": ["yerel değişken"],
+  "local variables": ["yerel değişkenler"],
+  "global variable": ["küresel değişken","global değişken"],
+  "global variables": ["küresel değişkenler","global değişkenler"],
+  "null safety": ["null güvenliği","null emniyeti", "null-güvenliği","null-emniyeti", "null güvenlik","null emniyet", "boş güvenliği","boş emniyeti", "boş-güvenliği","boş-emniyeti", "boş güvenlik","boş emniyet"],
+  "null-safety": ["null güvenliği","null emniyeti", "null-güvenliği","null-emniyeti", "null güvenlik","null emniyet", "boş güvenliği","boş emniyeti", "boş-güvenliği","boş-emniyeti", "boş güvenlik","boş emniyet"],
+  "null-safe": ["null-güvenli","null emniyetli","null güvenli", "boş-güvenli","boş emniyetli","boş güvenli"],
+  "null safe": ["null güvenli","null emniyetli","null emniyetli", "boş güvenli","boş emniyetli","boş emniyetli"],
+  "type inference": ["tip çıkarımı","tür çıkarımı"],
+  "return type": ["dönüş tipi","dönüş türü"],
+  "function type": ["fonksiyon türü","fonksiyon tipi"],
+  "smart cast": ["akıllı dönüştürme","akıllı-dönüştürme","akıllı tip dönüşümü"],
+  "smart-cast": ["akıllı-dönüştürme","akıllı dönüştürme","akıllı tip dönüşümü"],
+  "boilerplate codes": ["kalıp kodlar","tekrarlayan kodlar","şablon kodlar","basmakalıp kodlar"],
+  "boilerplate code": ["kalıp kod","tekrarlayan kod","şablon kod","basmakalıp kod"],
+  "compile-time": ["derleme zamanı"],
+  "compile time": ["derleme zamanı"],
+  "entry point": ["giriş noktası"],
+  "data type": ["veri türü","veri tipi"],
+  "data types": ["veri türleri","veri tipleri"],
+  "view model": ["görünüm modeli"],
+  "view models": ["görünüm modelleri"],
+  "type alias": ["tür takma adı","tip takma adı"],
+  "type aliases": ["tür takma adları","tip takma adları"],
+  "view binding": ["görünüm bağlama","görünüm bağlayıcı", "bağlama"],
+  "view bindings": ["görünüm bağlamalar","görünüm bağlayıcılar", "bağlamalar"],
+  "data binding": ["veri bağlama","veri bağlayıcı", "bağlama"],
+  "scope function": ["kapsam fonksiyonu","kapsam işlevi"],
+  "scope functions": ["kapsam fonksiyonları","kapsam işlevleri"],
+  "best practice": ["en iyi uygulama", "en iyi yöntem", "en iyi yol"],
+  "best practices": ["en iyi uygulamalar", "en iyi yöntemler", "en iyi yollar"],
+  "good practice": ["iyi uygulama", "iyi yöntem", "iyi yol"],
+  "good practices": ["iyi uygulamalar", "iyi yöntemler", "iyi yollar"],
+  "bad practice": ["kötü uygulama", "kötü yöntem", "kötü yol"],
+  "bad practices": ["kötü uygulamalar", "kötü yöntemler", "kötü yollar"],
+  "worst practice": ["en kötü uygulama", "en kötü yöntem", "en kötü yol"],
+  "worst practices": ["en kötü uygulamalar", "en kötü yöntemler", "en kötü yollar"],
+  "design principle": ["tasarım ilkesi","tasarım prensibi"],
+  "design principles": ["tasarım ilkeleri","tasarım prensipleri"],
+  "design pattern": ["tasarım deseni","tasarım kalıbı"],
+  "design patterns": ["tasarım desenleri","tasarım kalıpları"],
+  "type parameter": ["tür parametresi","tip parametresi"],
+  "binding class": ["bağlama sınıfı","bağlayıcı sınıf"],
+  "binding classes": ["bağlama sınıfları","bağlayıcı sınıfları"],
+  "type parameters": ["tür parametreleri","tip parametreleri"],
+  "root view": ["kök görünüm", "kök görünüş", "kök görünümü"],
+  "open issue": ["açık konu","açık sorun", "açık mesele"],
+  "single-property": ["tek özellikli","tek özellik"],
+  "single property": ["tek özellikli","tek özellik"],
+  "open issues": ["açık konular","açık sorunlar"],
+  "layout file": ["düzen dosyası","yerleşim dosyası"],
+  "type specification": ["tür belirtimi","tip belirtimi"],
+
+
+  "flow": ["akış"],
+  "flows": ["akışlar"],
+  "instance": ["örnek"],
+  "activity": ["aktivite"],
+  "map": ["eşleme"],
+  "iterator": ["yineleyici","döngücü"],
+  "iterators": ["yineleyiciler","döngücüler"],
+  "mapping": ["eşleme"],
+  "maps": ["eşlemeler"],
+  "basics": ["temeller","temel bilgiler"],
+  "basic": ["temel","temel bilgi"],
+  "inline": ["satır içi"],
+  "nested": ["iç içe"],
+  "nesting": ["iç içe geçirme", "yuvalama", "iç içe geçiş", "içine geçirme", "içine yerleştirme"],
+  "module": ["modül"],
+  "modules": ["modüller"],
+  "service": ["servis","hizmet"],
+  "services": ["servisler","hizmetler"],
+  "overhead": ["ek yük","fazladan yük", "ekstra yük", "ek yükü"],
+  "allocation": ["tahsis","ayırma"],
+  "allocations": ["tahsisler","ayırmalar"],
+  "repository": ["depo","depolama", "repo"],
+  "repositories": ["depolar","depolamalar", "repolar"],
+  "controller": ["denetleyici","kontrolcü"],
+  "controllers": ["denetleyiciler","kontrolcüler"],
+  "model": ["model"],
+  "models": ["modeller"],
+  "utility": ["araç","yardımcı araç"],
+  "utilities": ["araçlar","yardımcı araçlar"],
+  "workflow": ["iş akışı"],
+  "workflows": ["iş akışları"],
+  "activities": ["aktiviteler"],
+  "boilerplate": ["kalıp","tekrarlayan","şablon","basmakalıp"],
+  "fragment": ["parça"],
+  "fragments": ["parçalar"],
+  "endpoint": ["uç nokta","bitiş noktası"],
+  "endpoints": ["uç noktalar","bitiş noktaları"],
+  "field": ["alan"],
+  "fields": ["alanlar"],
+  "nullability": ["null olabilirlik","null olabilme","null-labilirlik","null-labilme", "null olma"],
+  "layout": ["düzen","yerleşim"],
+  "layouts": ["düzenler","yerleşimler"],
+  "adapter": ["adaptör"],
+  "adapters": ["adaptörler"],
+  "intent": ["niyet"],
+  "inheritance": ["kalıtım","miras"],
+  "represent": ["temsil et","temsil","temsil etme"],
+  "polymorphism": ["çok biçimlilik","polimorfizm"],
+  "infers": ["çıkarır","tümdengelim yapar","çıkar"],
+  "encapsulation": ["kapsülleme","sarmalama"],
+  "abstraction": ["soyutlama"],
+  "singleton": ["tekil","tekil nesne"],
+  "singletons": ["tekiller","tekil nesneler"],
+  "context": ["bağlam"],
+  "contexes": ["bağlamlar"],
+  "thread": ["iş parçacığı"],
+  "threads": ["iş parçacıkları"],
+  "lifecycle": ["yaşam döngüsü","yaşam çevrimi"],
+  "range": ["aralık"],
+  "ranges": ["aralıklar"],
+  "declaration": ["bildirim","deklarasyon"],
+  "explicitly": ["açıkça","belirgin bir şekilde"],
+  "explicit": ["açık","belirgin"],
+  "implicitly": ["örtük olarak","kapalı olarak"],
+  "implicit": ["örtük","kapalı"],
+  "button": ["düğme","buton"],
+  "buttons": ["düğmeler","butonlar"],
+  "triggers": ["tetikler","tetikleyici", "tetikleyiciler"],
+  "trigger": ["tetikleyici","tetik"],
+  "asynchronous": ["asenkron"],
+  "suffix": ["sonek","son ek"],
+  "suffixes": ["sonekler","son ekler"],
+  "prefixes": ["önekler","ön ekler"],
+  "prefix": ["önek","ön ek"],
+  "callback": ["geri arama"],
+  "callbacks": ["geri aramalar"],
+  "initializer": ["başlatıcı","ilklendirici","başlatan","ilklendiren"],
+  "initializers": ["başlatıcılar","ilklendiriciler","başlatanlar","ilklendirenler"],
+  "initialize": ["başlat","ilklendir","ilklendirme", "başlatma"],
+  "integer": ["tamsayı","tam sayı"],
+  "integers": ["tamsayılar","tam sayılar"],
+  "interoperability": ["birlikte çalışabilirlik","etkileşim"],
+  "constructor": ["yapıcı","kurucu"],
+  "constructors": ["yapıcılar","kurucular"],
+  "read-only": ["salt okunur", "yalnızca okunur", "sadece okunur", "salt-okunur"],
+  "property": ["özellik"],
+  "properties": ["özellikler"],
+  "signed": ["işaretli", "işaretli sayı"],
+  "unsigned": ["işaretsiz", "işaretsiz sayı"],
+  "mutable": ["değiştirilebilir","değişebilir", "değişken"],
+  "mutables": ["değiştirilebilirler","değişebilirler", "değişkenler"],
+  "mutability": ["değiştirilebilirlik","değişebilirlik"],
+  "immutable": ["değiştirilemez","değişmez"],
+  "immutables": ["değiştirilemezler","değişmezler"],
+  "immutability": ["değiştirilemezlik","değişmezlik"],
+  "interface": ["arayüz"],
+  "interfaces": ["arayüzler"],
+  "run-time": ["çalışma zamanı"],
+  "runtime": ["çalışma zamanı"],
+  "string": ["dize"],
+  "strings": ["diziler"],
+  "initializing": ["başlatma","ilklendir","ilklendirme","başlat"],
+  "annotation": ["anotasyon","notlama","ek açıklama","açıklama"],
+  "annotations": ["anotasyonlar","notlamalar","ek açıklamalar","açıklamalar"],
+  "keyword": ["anahtar kelime","anahtar sözcük"],
+  "keywords": ["anahtar kelimeler","anahtar sözcükler"],
+  "operator": ["operatör","işlemci","işlem","işleç"],
+  "operators": ["operatörler","işlemciler","işlemler","işleçler"],
+  "expression": ["ifade"],
+  "expressions": ["ifadeler"],
+  "accessors": ["erişimciler","erişim metodları","erişim metotları"],
+  "accessor": ["erişimci","erişim metodu","erişim metot","erişim yöntemi"],
+  "view": ["görünüm"],
+  "views": ["görünümler"],
+  "listener": ["dinleyici","dinleyici nesne"],
+  "listeners": ["dinleyiciler","dinleyici nesneler"],
+  "framework": ["çerçeve","altyapı"],
+  "frameworks": ["çerçeveler","altyapılar"],
+  "syntax": ["sözdizimi","sentaks"]
 }
